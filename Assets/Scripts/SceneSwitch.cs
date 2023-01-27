@@ -43,4 +43,9 @@ public class SceneSwitch : MonoBehaviour
     {
         SceneManager.LoadScene(8);
     }
+
+    public void LoadInstructs()
+    {
+        SceneManager.LoadScene(9);
+    }
 }

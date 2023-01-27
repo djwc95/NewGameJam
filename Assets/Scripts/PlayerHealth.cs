@@ -56,6 +56,10 @@ public class PlayerHealth : MonoBehaviour
     {
         if (collsion.gameObject.tag == "Enemy")
         {
+            StartCoroutine(DamageFlash()); //player feedback
+            StartCoroutine(cameraShake.Shaking()); //player feedback
+            //StartCoroutine(IFrames());
+
             if (armor >= 1) // if we have armor, lose one until we are out
             {
                 armor -= 1;
@@ -82,14 +86,10 @@ public class PlayerHealth : MonoBehaviour
         }
         currentHealth -= amount; // take dmg
 
-        StartCoroutine(DamageFlash()); //player feedback
-        StartCoroutine(cameraShake.Shaking()); //player feedback
-        StartCoroutine(IFrames());
-
         if (currentHealth <= 0)
         {
             currentHealth = 0;
-            Kill(); // kill us if we run out of health
+            //Kill(); // kill us if we run out of health
         }
     }
     // ========================= TAKE HEALING CALLED FROM OTHER SCRIPTS ========================

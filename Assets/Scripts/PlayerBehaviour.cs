@@ -23,6 +23,7 @@ public class PlayerBehaviour : MonoBehaviour
     Renderer render;
     Color color;
     public Image dashIcon;
+    Animator anim;
 
     // ==================== SETTING EVERYTHING UP ==========================
     void Start()
@@ -32,6 +33,7 @@ public class PlayerBehaviour : MonoBehaviour
         render = GetComponent<Renderer>();
         color = render.material.color;
         dashIcon.enabled = true;
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -43,6 +45,15 @@ public class PlayerBehaviour : MonoBehaviour
 
         moveInput.Normalize();
         rb.velocity = moveInput * activeMoveSpeed;
+
+        if (moveInput.x != 0 || moveInput.y != 0)
+        {
+            anim.SetBool("isWalking", true);
+        }
+        else
+        {
+            anim.SetBool("isWalking", false);
+        }
 
         if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.E)) //Lock mvmt while using shield
         {

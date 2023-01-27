@@ -91,13 +91,13 @@ public class PlayerAttack : MonoBehaviour
     }
 
     //========================== BUFFS WE CAN BUY IN SHOP ==============================
-    public void DmgBuff(int dmgBuff)
+    public void DmgBuff(int amount)
     {
-        damage += dmgBuff;
+        damage += amount;
     }
 
-    public void CritBuff(int critBuff)
+    public void CritBuff(int amount)
     {
-        critChance += critBuff;
+        critChance += amount;
     }
 }
