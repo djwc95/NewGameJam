@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -23,6 +24,10 @@ public class PlayerHealth : MonoBehaviour
     public PlayerBehaviour playerBehaviour;
     public SceneSwitch sceneSwitch;
 
+    Scene scene;
+    bool armorFilled1 = false;
+    bool armorFilled2 = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,6 +47,8 @@ public class PlayerHealth : MonoBehaviour
 
     void Update()
     {
+        scene = SceneManager.GetActiveScene();
+
         if (currentHealth >= maxHealth)
         {
             currentHealth = maxHealth;
@@ -49,6 +56,23 @@ public class PlayerHealth : MonoBehaviour
         if (armor >= maxArmor)
         {
             armor = maxArmor;
+        }
+
+        if (scene.name == "Lvl2")
+        {
+            if (armorFilled1 == false)
+            {
+                armor = maxArmor;
+                armorFilled1 = true;
+            }
+        }
+        if (scene.name == "Lvl3")
+        {
+            if(armorFilled2 == false)
+            {
+                armor = maxArmor;
+                armorFilled2 = true;
+            }
         }
     }
 
@@ -89,7 +113,7 @@ public class PlayerHealth : MonoBehaviour
         if (currentHealth <= 0)
         {
             currentHealth = 0;
-            //Kill(); // kill us if we run out of health
+            Kill(); // kill us if we run out of health
         }
     }
     // ========================= TAKE HEALING CALLED FROM OTHER SCRIPTS ========================
